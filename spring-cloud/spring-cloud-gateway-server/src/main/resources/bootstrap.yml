@@ -1,0 +1,21 @@
+server:
+  port: 8704
+spring:
+  application:
+    name: gatway-server
+  cloud:
+    gateway:
+      routes:
+        - id: test1
+          uri: lb://user-server
+          predicates:
+            # p一定要大写
+            - Path=/user-server/**
+          filters:
+            - StripPrefix=1
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:8701/eureka

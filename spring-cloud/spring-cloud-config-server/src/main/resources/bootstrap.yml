@@ -1,0 +1,23 @@
+server:
+  port: 8702
+eureka:
+  instance:
+    hostname: localhost
+    port: 8701
+  client:
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:${eureka.instance.port}}/eureka
+    register-with-eureka: false
+    fetch-registry: false
+spring:
+  application:
+    name: eureka-config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://gitee.com/dylanthomas/one
+          search-paths: respo
+#          username:
+#          password:
+      label: master
